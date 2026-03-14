@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { client } from '../library/microcms';
+import type { News, Product } from '../library/microcms';
+
+// ニュースを最新3件取得
+const newsResponse = await client.get({ 
+  endpoint: "news",
+  queries: { limit: 10, orders: "-publishedAt" } 
+});
+const latestNews: News[] = newsResponse.contents;
+
+// 導入事例を最新3件取得
+const productsResponse = await client.get({
+  endpoint: "products",
+  queries: { limit: 3, orders: "-publishedAt" }
+});
+const latestProducts: Product[] = productsResponse.contents;
+---
+
+<Layout title="Reflenge - 変化に柔軟に対応する ITパートナー">
+  <main>
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
+	{/* 背景動画エリア（変更なし） */}
+	<div class="absolute inset-0 z-0">
+		<video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
+		<source src="/hero-animation.mp4" type="video/mp4" />
+		<div class="absolute inset-0 bg-gradient-to-tr from-white via-white/80 to-accent-blue/30 hero-mesh"></div>
+		</video>
+		<div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/30"></div>
+	</div>
+
+	{/* テキストコンテンツエリア：px-8をpx-6に変更してスマホでの余白を確保 */}
+	<div class="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
+		<div class="max-w-4xl space-y-8 md:space-y-12 animate-slide-up-fade">
+		<div class="space-y-6 md:space-y-8">
+			<div class="inline-flex items-center gap-4 text-primary animate-fade-in">
+			<span class="h-[1px] w-8 md:w-12 bg-primary"></span>
+			<span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Innovate with Flexibility</span>
+			</div>
+
+			<h1 class="text-[40px] sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.2] md:leading-[1.15] editorial-title text-deep-blue">
+				<span class="block opacity-0 animate-slide-up">
+					変化に柔軟に
+				</span>
+				<span class="block ml-6 sm:ml-12 md:ml-24 mt-2 md:mt-4 opacity-0 animate-slide-up [animation-delay:200ms]">
+					対応する
+				</span>
+			</h1>
+
+			{/* 3. 本文のサイズをスマホで text-sm に調整 */}
+			<p class="text-sm md:text-lg text-gray-700 leading-relaxed max-w-2xl font-normal drop-shadow-sm animate-fade-in [animation-delay:400ms]">
+			テクノロジーは手段であり、目的はビジネスの持続的な成長です。<br class="hidden md:block"/>
+			Reflengeは、変わりゆく市場環境において、確かな技術と<br class="hidden md:block"/>
+			柔軟な発想で企業の次なる一歩を共創します。
+			</p>
+		</div>
+
+		{/* 4. スマホではボタンを縦に並べて押しやすくする */}
+		<div class="flex flex-col sm:flex-row gap-4 md:gap-6 animate-fade-in [animation-delay:600ms]">
+			<a class="group relative px-12 py-5 md:py-6 bg-deep-blue text-white text-[10px] font-bold tracking-[0.3em] overflow-hidden text-center" href="#contact">
+			<span class="relative z-10">CONSULTATION</span>
+			<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+			</a>
+			<a class="px-12 py-5 md:py-6 border border-gray-200 bg-white/50 backdrop-blur-sm text-[10px] font-bold tracking-[0.3em] hover:bg-gray-50 transition-all text-gray-600 text-center" href="#services">
+			OUR SERVICES
+			</a>
+		</div>
+		</div>
+	</div>
+	</section>
+
+    <section class="py-32 bg-white" id="services">
+		<div class="max-w-7xl mx-auto px-8">
+			<div class="mb-20 flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-12">
+				<div class="space-y-4">
+					<span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase block mb-4">01 / Products & Services</span>
+					<h2 class="text-4xl font-bold editorial-title text-deep-blue">事業内容</h2>
+				</div>
+				<p class="text-[10px] md:text-xs text-gray-400 font-medium tracking-widest mt-6 md:mt-0 max-w-sm md:text-right leading-loose">
+					最新のテクノロジーを、企業の文脈に合わせて最適化。<br class="hidden md:block"/>
+					5つのコアサービスを通じて、多角的な支援を提供します。
+				</p>
+			</div>
+
+			<div class="corporate-grid">
+				<div class="service-card group">
+					<div class="mb-12 text-primary">
+						<span class="material-symbols-outlined text-4xl font-extralight">psychology</span>
+					</div>
+					<div class="flex-grow">
+						<h4 class="text-xl font-bold mb-6 text-deep-blue">AIアプリ開発</h4>
+						<p class="text-sm text-gray-500 leading-loose">Generative AIや機械学習を活用し、業務フローを抜本的に革新するカスタムアプリケーションを開発します。</p>
+					</div>
+					<div class="mt-12 pt-8 border-t border-gray-50">
+						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#ai">
+							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="service-card group">
+					<div class="mb-12 text-primary">
+						<span class="material-symbols-outlined text-4xl font-extralight">insights</span>
+					</div>
+					<div class="flex-grow">
+						<h4 class="text-xl font-bold mb-6 text-[#001A4D] leading-relaxed">
+							業務改善<br class="md:hidden" />コンサルティング
+						</h4>
+						<p class="text-sm text-gray-500 leading-loose">徹底したヒアリングとデータ分析により、ボトルネックを特定。デジタルによる効率化プロセスを設計します。</p>
+					</div>
+					<div class="mt-12 pt-8 border-t border-gray-50">
+						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#consulting">
+							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="service-card group">
+					<div class="mb-12 text-primary">
+						<span class="material-symbols-outlined text-4xl font-extralight">developer_mode</span>
+					</div>
+					<div class="flex-grow">
+						<h4 class="text-xl font-bold mb-6 text-deep-blue">システム開発</h4>
+						<p class="text-sm text-gray-500 leading-loose">堅牢なアーキテクチャに基づいた基幹システムから、柔軟なWebアプリまで。品質と拡張性を両立した開発を行います。</p>
+					</div>
+					<div class="mt-12 pt-8 border-t border-gray-50">
+						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#system">
+							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="service-card group">
+					<div class="mb-12 text-primary">
+						<span class="material-symbols-outlined text-4xl font-extralight">partner_exchange</span>
+					</div>
+					<div class="flex-grow">
+						<h4 class="text-xl font-bold mb-6 text-deep-blue">ITコンサルティング</h4>
+						<p class="text-sm text-gray-500 leading-loose">中長期的なIT戦略の策定から、DX推進、セキュリティ強化まで、技術経営のパートナーとして伴走します。</p>
+					</div>
+					<div class="mt-12 pt-8 border-t border-gray-50">
+						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#it-strategy">
+							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="service-card group">
+					<div class="mb-12 text-primary">
+						<span class="material-symbols-outlined text-4xl font-extralight">web</span>
+					</div>
+					<div class="flex-grow">
+						<h4 class="text-xl font-bold mb-6 text-deep-blue">Web制作</h4>
+						<p class="text-sm text-gray-500 leading-loose">ブランド価値を最大化するクリエイティブと、成果に繋がるUI/UX設計。最新のWeb標準を適用した制作を行います。</p>
+					</div>
+					<div class="mt-12 pt-8 border-t border-gray-50">
+						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#web">
+							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="bg-deep-blue p-12 flex flex-col justify-center text-white transition-all hover:bg-primary">
+					<h4 class="text-xl font-bold mb-6">その他、個別のご相談</h4>
+					<p class="text-sm opacity-70 leading-loose mb-8">
+						課題が明確でない段階でも構いません。まずは現状をお聞かせください。
+					</p>
+					<a class="text-[10px] font-bold tracking-[0.2em] flex items-center gap-3 hover:gap-5 transition-all" href="/#contact">
+						CONTACT US <span class="material-symbols-outlined text-sm">east</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-32 bg-neutral" id="track-record">
+		<div class="max-w-7xl mx-auto px-8">
+			<div class="flex items-end justify-between mb-20 border-b border-gray-100 pb-12">
+			<div class="space-y-4">
+				<span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase block mb-4">02 / Case Studies</span>
+				<h2 class="text-4xl font-bold editorial-title text-deep-blue">導入事例</h2>
+			</div>
+			<a href="/products" class="text-[10px] font-bold border-2 border-deep-blue px-10 py-3 hover:bg-deep-blue hover:text-white transition-all tracking-[0.2em]">VIEW ALL</a>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-12">
+			{latestProducts.map((item) => (
+				<a href={`/products/${item.id}`} class="group cursor-pointer block border border-gray-100 p-2 rounded-lg hover:shadow-lg hover:shadow-primary/5 transition-all duration-500 bg-white">
+				<div class="aspect-video overflow-hidden mb-6 bg-gray-50 rounded-md">
+					<img 
+					src={item.eyecatch?.url || "/ロゴ1.png"} 
+					alt={item.title} 
+					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+					/>
+				</div>
+				<div class="space-y-4 px-4 pb-4">
+					<div class="flex items-center gap-4">
+					<time class="text-[10px] font-bold text-gray-400">
+						{new Date(item.publishedAt).toLocaleDateString('ja-JP').replace(/\//g, '.')}
+					</time>
+					{item.category && (
+						<span class="px-3 py-1 bg-accent-blue/40 text-[9px] text-primary font-bold">{item.category.name}</span>
+					)}
+					</div>
+					<h4 class="text-base font-bold leading-relaxed group-hover:text-primary transition-colors line-clamp-2 text-deep-blue">
+					{item.title}
+					</h4>
+				</div>
+				</a>
+			))}
+			</div>
+		</div>
+	</section>
+
+	<section class="py-32 bg-white" id="vision">
+		<div class="max-w-7xl mx-auto px-8">
+			<div class="mb-20 flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-12">
+				<div class="space-y-4">
+					<span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase block mb-4">03 / About Us</span>
+					<h2 class="text-4xl font-bold editorial-title text-deep-blue">私たちについて</h2>
+				</div>
+				<p class="text-[10px] md:text-xs text-gray-400 font-medium tracking-widest mt-6 md:mt-0 max-w-sm md:text-right leading-loose">
+					柔軟な思考でお客様のビジネスの可能性を広げます。<br class="hidden md:block"/>
+				</p>
+			</div>
+
+			<div class="grid lg:grid-cols-12 gap-16 items-center">
+				<div class="lg:col-span-6 space-y-10">
+					<h3 class="text-2xl md:text-3xl lg:text-4xl font-bold editorial-title leading-tight text-deep-blue">
+					テクノロジーで<br class="hidden md:block"/>ビジネスに新たな息吹を
+					</h3>
+					<div class="w-16 h-[2px] bg-primary"></div>
+					<div class="space-y-8 text-gray-600 leading-[2] font-light">
+						<p>Reflengeは、単なる開発会社ではありません。常にお客様のビジネスの核に寄り添い、変化の激しい現代において柔軟かつ強固なIT基盤を共に構築するパートナーです。</p>
+					</div>
+
+					<div class="pt-4">
+						<a href="/about" class="group flex items-center gap-6 text-[10px] font-bold tracking-[0.3em] text-deep-blue uppercase">
+							VIEW ABOUT US
+							<span class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all duration-500">
+								<span class="material-symbols-outlined text-sm">east</span>
+							</span>
+						</a>
+					</div>
+
+				</div>
+				<div class="lg:col-span-6 flex items-center justify-center mt-12 lg:mt-0">
+					<div class="relative w-full h-auto max-w-[200px] md:max-w-[350px] opacity-80">
+					<img 
+						src="/ロゴ.png" 
+						alt="Reflenge Brand Logo" 
+						class="w-full h-auto object-contain" 
+					/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-32 bg-neutral" id="flow">
+	<div class="max-w-7xl mx-auto px-8">
+		<div class="space-y-4 mb-20 border-b border-gray-200 pb-12">
+		<span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase block mb-4">04 / Our Process</span>
+		<h2 class="text-3xl md:text-4xl font-bold editorial-title text-deep-blue">プロジェクトの流れ</h2>
+		</div>
+		
+		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-px bg-gray-200 border border-gray-200">
+		<div class="bg-white p-10 group hover:bg-neutral transition-colors">
+			<span class="text-[10px] font-black text-primary tracking-tighter block mb-6">STEP 01</span>
+			<h4 class="text-lg font-bold mb-4 text-deep-blue">ヒアリング</h4>
+			<p class="text-sm text-gray-500 leading-relaxed font-light">課題の棚卸しからサポート。まずはお話を聞かせてください。</p>
+		</div>
+		<div class="bg-white p-10 group hover:bg-neutral transition-colors">
+			<span class="text-[10px] font-black text-primary tracking-tighter block mb-6">STEP 02</span>
+			<h4 class="text-lg font-bold mb-4 text-deep-blue">現状分析</h4>
+			<p class="text-sm text-gray-500 leading-relaxed font-light">業務フローやシステムの現状を詳細に分析し、可視化します。</p>
+		</div>
+		<div class="bg-white p-10 group hover:bg-neutral transition-colors">
+			<span class="text-[10px] font-black text-primary tracking-tighter block mb-6">STEP 03</span>
+			<h4 class="text-lg font-bold mb-4 text-deep-blue">戦略提案</h4>
+			<p class="text-sm text-gray-500 leading-relaxed font-light">投資対効果を最大化する、最適なプランをご提示します。</p>
+		</div>
+		<div class="bg-white p-10 group hover:bg-neutral transition-colors">
+			<span class="text-[10px] font-black text-primary tracking-tighter block mb-6">STEP 04</span>
+			<h4 class="text-lg font-bold mb-4 text-deep-blue">開発・実装</h4>
+			<p class="text-sm text-gray-500 leading-relaxed font-light">アジャイルな手法を取り入れ、着実かつ迅速に構築を進めます。</p>
+		</div>
+		<div class="bg-white p-10 group hover:bg-neutral transition-colors">
+			<span class="text-[10px] font-black text-primary tracking-tighter block mb-6">STEP 05</span>
+			<h4 class="text-lg font-bold mb-4 text-deep-blue">運用・伴走</h4>
+			<p class="text-sm text-gray-500 leading-relaxed font-light">稼働後も変化に合わせて、継続的な改善をサポートします。</p>
+		</div>
+		</div>
+	</div>
+	</section>
+
+	<section class="py-32 bg-white" id="news">
+		<div class="max-w-7xl mx-auto px-8">
+			<div class="flex items-end justify-between mb-12 border-b border-gray-100 pb-12">
+			<div class="space-y-4">
+				<span class="text-[10px] font-bold tracking-[0.4em] text-primary uppercase block mb-4">05 / Latest Insights</span>
+				<h2 class="text-4xl font-bold editorial-title text-deep-blue">ニュース</h2>
+			</div>
+			<a href="/news" class="text-[10px] font-bold border-2 border-deep-blue px-10 py-3 hover:bg-deep-blue hover:text-white transition-all tracking-[0.2em]">VIEW ALL</a>
+			</div>
+
+			<div class="divide-y divide-gray-100">
+			{latestNews.map((item) => (
+				<a href={`/news/${item.id}`} class="group flex flex-col md:flex-row md:items-center py-6 gap-4 md:gap-12 transition-all hover:pl-2">
+				
+				<div class="flex items-center gap-6 shrink-0 w-full md:w-auto">
+					<time class="text-[11px] font-bold text-gray-400 w-20">
+					{new Date(item.publishedAt).toLocaleDateString('ja-JP').replace(/\//g, '.')}
+					</time>
+					{item.category && (
+					<span class="px-4 py-1.5 bg-deep-blue text-white text-[9px] font-bold min-w-[100px] text-center">
+						{item.category.name}
+					</span>
+					)}
+				</div>
+
+				<h4 class="text-sm md:text-base font-medium text-deep-blue group-hover:text-primary transition-colors flex-grow truncate">
+					{item.title}
+				</h4>
+
+				<span class="material-symbols-outlined text-gray-300 text-sm hidden md:block transition-transform group-hover:translate-x-2">
+					arrow_forward
+				</span>
+				</a>
+			))}
+			</div>
+		</div>
+		</section>
+
+	<section class="py-32 bg-deep-blue text-white" id="contact">
+	<div class="max-w-7xl mx-auto px-8">
+		<div class="grid lg:grid-cols-2 gap-24">
+		<div class="space-y-12">
+			<div class="space-y-4">
+			<span class="text-[10px] font-bold tracking-[0.4em] text-accent-blue/60 uppercase">Contact Us</span>
+			<h2 class="text-4xl font-bold editorial-title">お問い合わせ</h2>
+			</div>
+			<p class="text-sm text-white/70 leading-loose">
+			技術的なご相談、お見積もりのご依頼など、お気軽にお問い合わせください。専門のコンサルタントが2営業日以内に回答いたします。
+			</p>
+			<div class="space-y-6 pt-8 border-t border-white/10">
+			<div class="flex items-center gap-6">
+				<span class="material-symbols-outlined text-accent-blue">mail</span>
+				<div>
+				<span class="text-[9px] block text-white/40 mb-1">EMAIL</span>
+				<span class="text-lg font-bold tracking-widest text-white">developer@reflenge.com</span>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<form class="space-y-8 bg-white/5 p-10 backdrop-blur-sm border border-white/10">
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">NAME</label>
+			<input type="text" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="お名前" />
+			</div>
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">EMAIL</label>
+			<input type="email" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="メールアドレス" />
+			</div>
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">MESSAGE</label>
+			<textarea class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none min-h-[120px] resize-none" placeholder="ご相談内容"></textarea>
+			</div>
+			<button type="submit" class="w-full py-6 bg-white text-deep-blue text-[10px] font-bold tracking-[0.4em] hover:bg-accent-blue transition-all">SEND INQUIRY</button>
+		</form>
+		</div>
+	</div>
+	</section>
+  </main>
+</Layout>

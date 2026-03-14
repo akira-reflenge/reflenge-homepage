@@ -1,0 +1,103 @@
+---
+/* src/components/Header.astro */
+---
+<nav class="fixed top-0 left-0 w-full h-20 bg-white/90 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-6 md:px-8 z-[100]">
+  <a href="/" class="flex items-center gap-4">
+    <div class="w-10 h-10">
+      <img src="/ロゴ.png" alt="Reflenge Logo" class="w-full h-full object-contain" />
+    </div>
+    <div class="flex flex-col">
+      <span class="text-xl font-bold tracking-tighter text-[#001A4D] leading-none">Reflenge</span>
+      <span class="text-[8px] font-bold tracking-[0.4em] text-gray-400 mt-1 uppercase">Digital Transformation</span>
+    </div>
+  </a>
+
+  <div class="hidden lg:flex items-center gap-10">
+    <a href="/about" class="nav-link">ABOUT US</a>
+    <a href="/services" class="nav-link">SERVICES</a>
+    <a href="/products" class="nav-link">CASE STUDIES</a>
+    <a href="/news" class="nav-link">NEWS</a>
+    <a href="/#contact" class="contact-btn">GET IN TOUCH</a>
+  </div>
+
+  <button id="menu-open-btn" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5">
+    <span class="w-6 h-0.5 bg-[#001A4D]"></span>
+    <span class="w-6 h-0.5 bg-[#001A4D]"></span>
+    <span class="w-6 h-0.5 bg-[#001A4D]"></span>
+  </button>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu-overlay">
+  <button id="menu-close-btn" class="absolute top-5 right-6 w-10 h-10 flex flex-col justify-center items-center">
+    <span class="w-6 h-0.5 bg-[#001A4D] rotate-45 translate-y-[1px]"></span>
+    <span class="w-6 h-0.5 bg-[#001A4D] -rotate-45 -translate-y-[1px]"></span>
+  </button>
+
+  <div class="flex flex-col items-center gap-8">
+    <a href="/about" class="nav-link-mobile">ABOUT US</a>
+    <a href="/services" class="nav-link-mobile">SERVICES</a>
+    <a href="/products" class="nav-link-mobile">CASE STUDIES</a>
+    <a href="/news" class="nav-link-mobile">NEWS</a>
+    <a href="/#contact" class="mobile-contact-btn">GET IN TOUCH</a>
+  </div>
+</div>
+
+<style>
+  .nav-link { font-size: 13px; font-weight: 900; letter-spacing: 0.15em; color: #001A4D; text-decoration: none; }
+  .contact-btn { background: #001A4D; color: white; padding: 0.8rem 2rem; font-size: 12px; font-weight: 900; letter-spacing: 0.2em; text-decoration: none; }
+
+  .mobile-menu-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background-color: white !important;
+    z-index: 1000 !important; /* 最前面 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    visibility: hidden;
+  }
+
+  .mobile-menu-overlay.active {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  .nav-link-mobile { font-size: 24px; font-weight: 900; color: #001A4D; text-decoration: none; letter-spacing: 0.1em; }
+  .mobile-contact-btn { background: #001A4D; color: white !important; padding: 1rem 2.5rem; font-weight: 900; text-decoration: none; }
+</style>
+
+<script is:inline>
+  function initMenu() {
+    const openBtn = document.getElementById('menu-open-btn');
+    const closeBtn = document.getElementById('menu-close-btn');
+    const menu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('#mobile-menu a');
+
+    if (!openBtn || !closeBtn || !menu) return;
+
+    // 開く
+    openBtn.onclick = () => {
+      menu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    // 閉じる
+    closeBtn.onclick = () => {
+      menu.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    // リンククリックで閉じる
+    links.forEach(link => {
+      link.onclick = () => {
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+    });
+  }
+
+  initMenu();
+  document.addEventListener('astro:after-swap', initMenu);
+</script>

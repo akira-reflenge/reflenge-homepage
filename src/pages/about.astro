@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="会社概要 | 株式会社Reflenge">
+  <main class="bg-white min-h-screen">
+    <section class="relative pt-24 pb-16 px-6 bg-neutral/50">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col gap-4 mb-16 animate-slide-up">
+          <span class="text-primary font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
+          Company Profile
+          </span>
+          <h2 class="text-5xl font-bold text-deep-blue leading-tight editorial-title">会社概要</h2>
+        </div>
+        <div class="relative h-[400px] w-full overflow-hidden rounded-3xl shadow-xl">
+          <img src="/office.jpeg" alt="Office" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-r from-deep-blue/40 to-transparent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-24">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+            
+            <div class="animate-slide-up"> 
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-[1px] bg-primary"></div>
+                <span class="text-primary text-xs font-bold tracking-[0.3em] uppercase">Message</span>
+            </div>
+            <h3 class="text-4xl font-bold text-deep-blue leading-snug editorial-title mb-8">
+                変化に柔軟に<br class="md:hidden" />対応する
+            </h3>
+            <div class="space-y-6 text-slate-600 leading-relaxed font-medium">
+                <p>
+                テクノロジーは手段であり、目的はビジネスの持続的な成長です。Reflengeは、変わりゆく市場環境において、確かな技術と柔軟な発想で企業の次なる一歩を共創します。
+                </p>
+                <p class="text-sm opacity-80">
+                私たちは「本質的な課題解決」を第一に掲げ、お客様の持続的な成長を支えるパートナーとして歩みます。単なるシステム開発に留まらず、未来を共創する存在であり続けたいと考えています。
+                </p>
+            </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl animate-slide-up [animation-delay:200ms]">
+            <img src="/CEO.jpg" alt="Team collaboration" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-neutral/30 py-24 px-6 border-y border-slate-100">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-16">
+          <h3 class="text-2xl font-bold text-deep-blue tracking-tighter">会社情報</h3>
+          <div class="flex-1 h-[1px] bg-slate-200"></div>
+          <span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Corporate Data</span>
+        </div>
+
+        <div class="space-y-0">
+          {[
+            { label: "会社名", value: "株式会社Reflenge" },
+            { label: "所在地", value: "〒782-0003 高知県香美市土佐山田町宮ノ口１８５ 地域連携棟304A号室" },
+            { label: "設立", value: "2025年4月15日" },
+            { label: "代表者", value: "岡山 蒼衣" },
+          ].map((item) => (
+            <div class="grid md:grid-cols-[200px_1fr] py-8 border-b border-slate-100">
+              <span class="text-sm font-bold text-slate-400 self-center uppercase tracking-wider">{item.label}</span>
+              <span class="text-lg text-deep-blue font-bold">{item.value}</span>
+            </div>
+          ))}
+
+          <div class="grid md:grid-cols-[200px_1fr] py-8 border-b border-slate-100">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+               <span class="material-symbols-outlined text-sm text-slate-400">category</span>
+               <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Business</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {["AIアプリ開発", "業務改善コンサルティング", "業務システム開発", "ITコンサルティング", "WEB制作"].map((tag) => (
+                <span class="px-3 py-1.5 bg-accent-blue text-primary text-[11px] font-bold rounded-sm border border-blue-100">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-[200px_1fr] py-8 border-b border-slate-100">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+               <span class="material-symbols-outlined text-sm text-slate-400">public</span>
+               <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Service Area</span>
+            </div>
+            <div class="space-y-1">
+              <p class="text-lg text-deep-blue font-bold tracking-tight">高知県を中心に全国対応</p>
+              <p class="text-sm text-slate-400 font-medium">（リモートによるコンサルティング・開発が可能です）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-24">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h3 class="text-3xl font-bold text-deep-blue mb-6 editorial-title">アクセス</h3>
+          <p class="text-slate-500 mb-10 leading-relaxed font-medium">
+            高知工科大学 香美キャンパス内に位置する地域連携棟3階にオフィスを構えています。地域企業様との連携を深め、最新技術の社会実装を目指しております。
+          </p>
+          <div class="space-y-4">
+            <div class="p-6 rounded-xl border border-slate-100 bg-white shadow-sm flex items-start gap-4 hover:border-primary/30 transition-colors">
+              <span class="material-symbols-outlined text-primary">commute</span>
+              <div>
+                <p class="font-bold text-deep-blue text-sm mb-1">公共交通機関</p>
+                <p class="text-xs text-slate-500">JR土佐山田駅より車で約10分</p>
+              </div>
+            </div>
+            <div class="p-6 rounded-xl border border-slate-100 bg-white shadow-sm flex items-start gap-4 hover:border-primary/30 transition-colors">
+              <span class="material-symbols-outlined text-primary">local_parking</span>
+              <div>
+                <p class="font-bold text-deep-blue text-sm mb-1">お車でお越しの方</p>
+                <p class="text-xs text-slate-500">来客用駐車場がございます。事前にご連絡ください。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden h-[450px] border border-slate-100 shadow-2xl relative group">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.444743285038!2d133.71650387625123!3d33.6200262310115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3551f16c148e6f1f%3A0xc6668740f907b275!2z6auY55-l5bel56eR5aSn5a2mIOmmlu9juOCreODo-ODs-ODkeOCueWcsOWfny DileiCl-ajnw!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp"
+            class="w-full h-full border-0 grayscale contrast-[1.1] opacity-70 group-hover:opacity-100 transition-opacity duration-700"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
