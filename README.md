@@ -1,89 +1,58 @@
-# Astro Starter Kit: Basics
+# 🚀 Reflenge Homepage Project
 
-```sh
-npm create astro@latest -- --template basics
-```
+Astro と microCMS を使用した、Reflenge の公式サイトプロジェクトです。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 📁 プロジェクト構成（Directory Structure）
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── public/          # 公開アセット（favicon, 動画, 重い画像など）
+├── src/
+│   ├── assets/      # 最適化が必要な画像（SVGなど）
+│   ├── components/  # 共通部品（Header, Footer, Welcomeなど）
+│   ├── layouts/     # 共通テンプレート（Layout.astro）
+│   ├── library/     # 外部連携ロジック（microCMS設定など）
+│   ├── pages/       # ページ構成（ファイル名がURLに対応）
+│   │   ├── news/    # ニュース記事関連
+│   │   ├── products/# 製品紹介関連
+│   │   └── index.astro # トップページ
+│   └── styles/      # CSS（global.cssなど）
+├── .env             # 環境変数（※Gitには含めない）
+├── astro.config.mjs # Astro本体設定
+└── package.json     # プロジェクトの依存関係定義
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+##  開発用コマンド（Commands）
 
-## 🧞 Commands
+プロジェクトのルートディレクトリで実行してください。
 
-All commands are run from the root of the project, from a terminal:
+| コマンド | 内容 |
+| :--- | :--- |
+| `npm install` | ライブラリのインストール（プロジェクト開始時やパッケージ追加時） |
+| `npm run dev` | ローカル開発サーバーを起動します。 [http://localhost:4321](http://localhost:4321) で確認可能です。 |
+| `npm run build` | 本番公開用のファイルをビルドし、`dist/` フォルダに出力します。 |
+| `npm run preview` | ビルドした本番用ファイルをローカル環境でプレビュー確認します。 |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+##  開発の流れ（Workflow）
 
-## 👀 Want to learn more?
+### 1. セットアップ
+* **環境変数の準備**: `.env` ファイルを新規作成し、microCMS の API キーを設定してください。
+* **ライブラリの導入**: `npm install` を実行して、依存関係を最新の状態にします。
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-=============================================================================================================================
-プロジェクト構成（ディレクトリ構造）
-Reflenge-homepage/
-├── .astro/                # Astroのキャッシュや自動生成された型定義
-├── .vscode/               # エディタ（VS Code）の設定ファイル
-├── node_modules/          # プロジェクトで使用する外部パッケージ（ライブラリ）
-├── public/                # 公開アセット（ブラウザから直接アクセス可能なファイル）
-├── src/                   # メインのソースコード
-│   ├── assets/            # 画像（SVGなど）の管理フォルダ
-│   ├── components/        # 各ページで使い回す部品（Header, Footerなど）
-│   ├── layouts/           # ページ全体の共通テンプレート（枠組み）
-│   ├── library/           # 外部API連携（microCMSなど）のロジック
-│   ├── pages/             # 各ページのファイル（ファイル名がそのままURLになる）
-│   │   ├── news/          # ニュース詳細や一覧に関連するフォルダ
-│   │   ├── products/      # 製品詳細や一覧に関連するフォルダ
-│   │   └── index.astro    # トップページ
-│   └── styles/            # CSSスタイルシート（global.cssなど）
-├── .env                   # 環境変数（APIキーなどの秘密情報）
-├── .gitignore             # Gitで管理しないファイル・フォルダの指定
-├── astro.config.mjs       # Astroの本体設定ファイル
-├── package-lock.json      # インストールされたライブラリの厳密なバージョン管理
-├── package.json           # プロジェクトの依存関係やスクリプトの定義
-├── README.md              # プロジェクトの説明書
-└── tsconfig.json          # TypeScriptの設定
+### 2. コンポーネント・ページの追加
+* **共通パーツ**: 再利用する部品は `src/components/` に作成します。
+* **新規ページ**: `src/pages/` に `.astro` ファイルを追加します（ファイル名がそのままURLになります）。
+* **共通レイアウト**: `Layout.astro` でコンテンツを囲むことで、全ページ共通の `<head>` やナビゲーションが適用されます。
 
-プロジェクトの流れ
-1.開発の始め方（セットアップ）
-新しく作業を始める際や、別のPCで作業する際の手順です。
-ライブラリのインストール: npm install
-開発サーバーの起動: npm run dev （http://localhost:4321 で確認可能）
-環境変数の準備: .env ファイルを作成し、MICROCMS_SERVICE_DOMAIN と MICROCMS_API_KEY を設定する。
+### 3. microCMS 連携
+* **ロジックの集約**: データ取得処理は `src/library/microcms.ts` にまとめられています。
+> [!IMPORTANT]
+> **重要:** Vercel で公開する際は、Vercel の管理画面（Environment Variables）から API キーの設定が必須です。
 
-2.ページの作り方（ワークフロー）
-Astroプロジェクトにおける標準的な手順です。
-コンポーネント作成: src/components/ に新しい部品（例：Card.astro）を作る。
-ページ作成: src/pages/ に .astro ファイルを適宜作る。
-※レイアウト適用はsrc/layouts/Layout.astro でページを囲み、共通のデザインを適用する。
+---
 
-3.microCMSとの連携ルール
-API連携部分は複雑になりがちなので、流れをメモしておきます。
-データ取得: src/library/microcms.ts を通じてAPIを設定。
-型の定義: 新しいコンテンツを追加したら、TypeScriptの型定義を更新してエラーを防ぐ。
-プレビュー: microCMSの管理画面で更新した内容が反映されるか確認する。
+## 🌐 デプロイと自動更新
+
+* **GitHub への送信**: ターミナルで `git push origin main` を実行します。
+* **公開プラットフォーム**: **Vercel** を使用してホスティングしています。
+* **継続的デプロイ (CD)**: GitHub の `main` ブランチに push すると、Vercel が自動的に最新版をビルドし、数分以内に公開サイトへ反映します。
