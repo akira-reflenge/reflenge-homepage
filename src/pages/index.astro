@@ -338,40 +338,87 @@ const latestProducts: Product[] = productsResponse.contents;
 		<div class="grid lg:grid-cols-2 gap-24">
 		<div class="space-y-12">
 			<div class="space-y-4">
-			<span class="text-[10px] font-bold tracking-[0.4em] text-accent-blue/60 uppercase">Contact Us</span>
+			<span class="text-[10px] font-bold tracking-[0.4em] text-accent-blue/60 uppercase block mb-4">Contact Us</span>
 			<h2 class="text-4xl font-bold editorial-title">お問い合わせ</h2>
 			</div>
 			<p class="text-sm text-white/70 leading-loose">
-			技術的なご相談、お見積もりのご依頼など、お気軽にお問い合わせください。専門のコンサルタントが2営業日以内に回答いたします。
+			技術的なご相談、お見積もりのご依頼など、お気軽にお問い合わせください。
 			</p>
-			<div class="space-y-6 pt-8 border-t border-white/10">
-			<div class="flex items-center gap-6">
-				<span class="material-symbols-outlined text-accent-blue">mail</span>
-				<div>
-				<span class="text-[9px] block text-white/40 mb-1">EMAIL</span>
-				<span class="text-lg font-bold tracking-widest text-white">developer@reflenge.com</span>
-				</div>
-			</div>
-			</div>
 		</div>
 
-		<form class="space-y-8 bg-white/5 p-10 backdrop-blur-sm border border-white/10">
+		<form 
+			id="contactForm"
+			action="https://api.staticforms.xyz/submit" 
+			method="POST" 
+			class="space-y-8 bg-white/5 p-10 backdrop-blur-sm border border-white/10"
+		>
+			<input type="hidden" name="accessKey" value="sf_9keec39klej8k3f1ed1c9nn0">
+			<input type="hidden" name="redirectTo" value="https://reflenge.com">
+			<input type="hidden" name="subject" id="dynamicSubject" value="Webサイトからのお問い合わせ">
+
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">NAME</label>
-			<input type="text" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="お名前" />
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Inquiry Type / 必須</label>
+			<div class="flex flex-wrap gap-6 text-sm">
+				<label class="flex items-center gap-2 cursor-pointer">
+				<input type="radio" name="inquiry_type" value="業務依頼" checked class="accent-primary" /> 業務依頼
+				</label>
+				<label class="flex items-center gap-2 cursor-pointer">
+				<input type="radio" name="inquiry_type" value="資料請求" class="accent-primary" /> 資料請求
+				</label>
+				<label class="flex items-center gap-2 cursor-pointer">
+				<input type="radio" name="inquiry_type" value="その他" class="accent-primary" /> その他
+				</label>
 			</div>
+			</div>
+
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">EMAIL</label>
-			<input type="email" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="メールアドレス" />
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Company / 必須</label>
+			<input type="text" name="company" id="companyInput" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="株式会社Reflenge" />
 			</div>
+
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block">MESSAGE</label>
-			<textarea class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none min-h-[120px] resize-none" placeholder="ご相談内容"></textarea>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Department</label>
+			<input type="text" name="department" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="開発部" />
 			</div>
-			<button type="submit" class="w-full py-6 bg-white text-deep-blue text-[10px] font-bold tracking-[0.4em] hover:bg-accent-blue transition-all">SEND INQUIRY</button>
+
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Name / 必須</label>
+			<input type="text" name="name" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="お名前" />
+			</div>
+
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Email / 必須</label>
+			<input type="email" name="email" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="mail@example.com" />
+			</div>
+
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Phone</label>
+			<input type="tel" name="phone" class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="03-xxxx-xxxx" />
+			</div>
+
+			<div class="space-y-4">
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Message / 必須</label>
+			<textarea name="message" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none min-h-[120px] resize-none" placeholder="ご相談内容"></textarea>
+			</div>
+
+			<button type="submit" class="w-full py-6 bg-white text-deep-blue text-[10px] font-bold tracking-[0.4em] hover:bg-accent-blue hover:text-white transition-all uppercase">SEND INQUIRY</button>
 		</form>
 		</div>
 	</div>
 	</section>
+
+	<script is:inline>
+	// 件名を「お問い合わせ内容 - 会社名」に自動合成するスクリプト
+	const form = document.getElementById('contactForm');
+	const subjectHidden = document.getElementById('dynamicSubject');
+	const companyInput = document.getElementById('companyInput');
+
+	form.addEventListener('submit', () => {
+		const inquiryType = form.querySelector('input[name="inquiry_type"]:checked').value;
+		const companyName = companyInput.value || "個人";
+		// 例: 資料請求 - ○○株式会社
+		subjectHidden.value = `${inquiryType} - ${companyName}`;
+	});
+	</script>
   </main>
 </Layout>
