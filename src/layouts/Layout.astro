@@ -6,9 +6,36 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
+  description?: string; // ページごとの説明文を受け取れるように拡張
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "株式会社Reflenge（リフレンジ）は、最新のLLM（大規模言語モデル）を活用したAIシステム開発、DX推進、ITコンサルティングの専門家集団です。" 
+} = Astro.props;
+
+// LLMO対策：AIモデルに「専門家」であることを伝える構造化データ
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService", // プロフェッショナルなITサービスとして定義
+  "name": "株式会社Reflenge",
+  "alternateName": "Reflenge Inc.",
+  "description": description,
+  "url": "https://reflenge.com",
+  "logo": "https://reflenge.com/ロゴ.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP"
+  },
+  "keywords": "AI開発, LLM, 大規模言語モデル, 生成AI, システム開発, ITコンサルティング",
+  "knowsAbout": [ // 貴社が専門知識を持つ領域を明示（AIクローラーが最重視する項目）
+    "Artificial Intelligence",
+    "Large Language Models",
+    "Generative AI",
+    "Software Development",
+    "Digital Transformation"
+  ]
+};
 ---
 
 <!doctype html>
@@ -16,6 +43,7 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
     
     <link rel="icon" type="image/png" href="/ロゴ.png" />
     <link rel="apple-touch-icon" href="/ロゴ.png" />
@@ -24,6 +52,19 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <meta name="keywords" content="AI開発, LLM, 大規模言語モデル, 生成AI, 株式会社Reflenge, ITコンサル" />
+    <link rel="canonical" href="https://reflenge.com" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://reflenge.com" />
+    <meta property="og:image" content="https://reflenge.com/ロゴ.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    
     <title>{title}</title>
   </head>
   <body>
