@@ -345,15 +345,10 @@ const latestProducts: Product[] = productsResponse.contents;
 			</p>
 		</div>
 
-		<form 
+		<form
 			id="contactForm"
-			action="https://api.staticforms.xyz/submit" 
-			method="POST" 
 			class="space-y-8 bg-white/5 p-10 backdrop-blur-sm border border-white/10"
 		>
-			<input type="hidden" name="accessKey" value="sf_9keec39klej8k3f1ed1c9nn0">
-			<input type="hidden" name="redirectTo" value="https://reflenge.com">
-			<input type="hidden" name="subject" id="dynamicSubject" value="Webサイトからのお問い合わせ">
 
 			<div class="space-y-4">
 			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Inquiry Type / 必須</label>
@@ -400,23 +395,69 @@ const latestProducts: Product[] = productsResponse.contents;
 			<textarea name="message" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none min-h-[120px] resize-none" placeholder="ご相談内容"></textarea>
 			</div>
 
-			<button type="submit" class="w-full py-6 bg-white text-deep-blue text-[10px] font-bold tracking-[0.4em] hover:bg-accent-blue hover:text-white transition-all uppercase">SEND INQUIRY</button>
+			<button id="submitBtn" type="submit" class="w-full py-6 bg-white text-deep-blue text-[10px] font-bold tracking-[0.4em] hover:bg-accent-blue hover:text-white transition-all uppercase">SEND INQUIRY</button>
+			<p id="formError" class="text-red-400 text-xs text-center hidden">送信に失敗しました。しばらくしてから再度お試しください。</p>
 		</form>
 		</div>
 	</div>
 	</section>
 
 	<script is:inline>
-	// 件名を「お問い合わせ内容 - 会社名」に自動合成するスクリプト
-	const form = document.getElementById('contactForm');
-	const subjectHidden = document.getElementById('dynamicSubject');
-	const companyInput = document.getElementById('companyInput');
+	const WEBHOOK_URL = 'https://discord.com/api/webhooks/1395012199272943716/vCjbnTYZSqNcsFfCnh6eRVQ4a9KDspA6hkgu3oKRgt0Gh9XZIwvVhd6K_r-X5RqD5jAr';
 
-	form.addEventListener('submit', () => {
-		const inquiryType = form.querySelector('input[name="inquiry_type"]:checked').value;
-		const companyName = companyInput.value || "個人";
-		// 例: 資料請求 - ○○株式会社
-		subjectHidden.value = `${inquiryType} - ${companyName}`;
+	const form = document.getElementById('contactForm');
+	const submitBtn = document.getElementById('submitBtn');
+	const formError = document.getElementById('formError');
+
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+
+		const inquiryType = form.querySelector('input[name="inquiry_type"]:checked')?.value || '未選択';
+		const company = form.querySelector('input[name="company"]').value;
+		const department = form.querySelector('input[name="department"]').value;
+		const name = form.querySelector('input[name="name"]').value;
+		const email = form.querySelector('input[name="email"]').value;
+		const phone = form.querySelector('input[name="phone"]').value;
+		const message = form.querySelector('textarea[name="message"]').value;
+
+		submitBtn.disabled = true;
+		submitBtn.textContent = 'SENDING...';
+		formError.classList.add('hidden');
+
+		const payload = {
+			embeds: [{
+				title: 'Webサイトからのお問い合わせ',
+				color: 0x001A4D,
+				fields: [
+					{ name: 'お問い合わせ種別', value: inquiryType, inline: true },
+					{ name: '会社名', value: company || '未入力', inline: true },
+					{ name: '部署', value: department || '未入力', inline: true },
+					{ name: 'お名前', value: name, inline: true },
+					{ name: 'メールアドレス', value: email, inline: true },
+					{ name: '電話番号', value: phone || '未入力', inline: true },
+					{ name: 'お問い合わせ内容', value: message, inline: false },
+				],
+				timestamp: new Date().toISOString(),
+			}]
+		};
+
+		try {
+			const res = await fetch(WEBHOOK_URL, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(payload),
+			});
+
+			if (res.ok || res.status === 204) {
+				window.location.href = '/thanks';
+			} else {
+				throw new Error(`status: ${res.status}`);
+			}
+		} catch (err) {
+			formError.classList.remove('hidden');
+			submitBtn.disabled = false;
+			submitBtn.textContent = 'SEND INQUIRY';
+		}
 	});
 	</script>
   </main>
