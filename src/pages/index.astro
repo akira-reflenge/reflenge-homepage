@@ -351,7 +351,7 @@ const latestProducts: Product[] = productsResponse.contents;
 		>
 
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Inquiry Type / 必須</label>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Inquiry Type / <span class="text-red-400 normal-case tracking-normal">必須</span></label>
 			<div class="flex flex-wrap gap-6 text-sm">
 				<label class="flex items-center gap-2 cursor-pointer">
 				<input type="radio" name="inquiry_type" value="業務依頼" checked class="accent-primary" /> 業務依頼
@@ -366,7 +366,7 @@ const latestProducts: Product[] = productsResponse.contents;
 			</div>
 
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Company / 必須</label>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Company <span class="text-red-400 normal-case tracking-normal">必須</span></label>
 			<input type="text" name="company" id="companyInput" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="株式会社Reflenge" />
 			</div>
 
@@ -376,12 +376,12 @@ const latestProducts: Product[] = productsResponse.contents;
 			</div>
 
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Name / 必須</label>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Name / <span class="text-red-400 normal-case tracking-normal">必須</span></label>
 			<input type="text" name="name" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="お名前" />
 			</div>
 
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Email / 必須</label>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Email / <span class="text-red-400 normal-case tracking-normal">必須</span></label>
 			<input type="email" name="email" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none" placeholder="mail@example.com" />
 			</div>
 
@@ -391,7 +391,7 @@ const latestProducts: Product[] = productsResponse.contents;
 			</div>
 
 			<div class="space-y-4">
-			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Message / 必須</label>
+			<label class="text-[10px] font-bold tracking-[0.2em] text-white/60 block uppercase">Message / <span class="text-red-400 normal-case tracking-normal">必須</span></label>
 			<textarea name="message" required class="w-full bg-transparent border-b border-white/20 py-4 text-sm focus:border-white transition-all outline-none min-h-[120px] resize-none" placeholder="ご相談内容"></textarea>
 			</div>
 
