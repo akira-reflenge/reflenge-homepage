@@ -1,0 +1,94 @@
+---
+/* src/pages/sitemap.astro */
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    category: 'Company',
+    label: '会社情報',
+    links: [
+      { name: 'トップページ', href: '/', desc: 'Reflenge ホームページ' },
+      { name: '会社概要', href: '/about', desc: 'ミッション・ビジョン・メンバー' },
+      { name: 'お知らせ', href: '/news', desc: 'ニュース・プレスリリース' },
+    ],
+  },
+  {
+    category: 'Services',
+    label: '事業内容',
+    links: [
+      { name: '事業内容', href: '/services', desc: '提供サービス一覧' },
+      { name: 'AIアプリ開発', href: '/services#ai', desc: '生成AI・業務AIソリューション' },
+      { name: '業務改善コンサル', href: '/services#consulting', desc: 'プロセス最適化支援' },
+      { name: 'システム開発', href: '/services#system', desc: 'スクラッチ開発・受託開発' },
+      { name: 'ITコンサルティング', href: '/services#it-strategy', desc: 'IT戦略・DX推進' },
+      { name: 'WEB制作', href: '/services#web', desc: 'コーポレートサイト・LP制作' },
+    ],
+  },
+  {
+    category: 'Products & Solutions',
+    label: '製品・事例',
+    links: [
+      { name: '導入事例', href: '/products', desc: '実績・ケーススタディ' },
+      { name: '自社製品', href: '/solutions', desc: '自社開発プロダクト紹介' },
+    ],
+  },
+  {
+    category: 'Legal & Contact',
+    label: 'お問い合わせ・法務',
+    links: [
+      { name: 'お問い合わせ', href: '/#contact', desc: 'お見積もり・ご相談' },
+      { name: 'プライバシーポリシー', href: '/privacy', desc: '個人情報保護方針' },
+    ],
+  },
+];
+---
+
+<Layout title="サイトマップ | 株式会社Reflenge">
+  <main class="bg-white min-h-screen">
+
+    <section class="relative pt-32 pb-16 px-6 bg-neutral/50">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col gap-4 animate-slide-up">
+          <span class="text-primary font-bold tracking-[0.4em] uppercase text-xs">Sitemap</span>
+          <h1 class="text-4xl font-bold text-deep-blue leading-tight editorial-title">サイトマップ</h1>
+          <p class="text-slate-500 text-sm max-w-xl leading-relaxed">
+            株式会社Reflengeのウェブサイト全ページの一覧です。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {sections.map((section) => (
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary">{section.category}</span>
+                <div class="flex-1 h-px bg-slate-100"></div>
+              </div>
+              <h2 class="text-lg font-bold text-deep-blue">{section.label}</h2>
+              <ul class="space-y-4">
+                {section.links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="group flex items-start gap-4 p-4 border border-slate-100 hover:border-primary/30 hover:bg-primary/5 transition-all"
+                    >
+                      <span class="text-primary font-bold text-xs mt-0.5 group-hover:translate-x-1 transition-transform">→</span>
+                      <div>
+                        <p class="text-sm font-bold text-deep-blue group-hover:text-primary transition-colors">{link.name}</p>
+                        <p class="text-xs text-slate-400 mt-0.5">{link.desc}</p>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
