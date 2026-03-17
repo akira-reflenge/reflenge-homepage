@@ -35,8 +35,7 @@ const latestProducts: Product[] = productsResponse.contents;
 		<div class="max-w-4xl space-y-8 md:space-y-12 animate-slide-up-fade">
 		<div class="space-y-6 md:space-y-8">
 			<div class="inline-flex items-center gap-4 text-primary animate-fade-in">
-			<span class="h-[1px] w-8 md:w-12 bg-primary"></span>
-			<span class="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Innovate with Flexibility</span>
+			
 			</div>
 
 			<h1 class="text-[40px] sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.2] md:leading-[1.15] editorial-title text-deep-blue">
@@ -59,7 +58,7 @@ const latestProducts: Product[] = productsResponse.contents;
 		{/* 4. スマホではボタンを縦に並べて押しやすくする */}
 		<div class="flex flex-col sm:flex-row gap-4 md:gap-6 animate-fade-in [animation-delay:600ms]">
 			<a class="group relative px-12 py-5 md:py-6 bg-deep-blue text-white text-[10px] font-bold tracking-[0.3em] overflow-hidden text-center" href="#contact">
-			<span class="relative z-10">CONSULTATION</span>
+			<span class="relative z-10">Contact</span>
 			<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
 			</a>
 			<a class="px-12 py-5 md:py-6 border border-gray-200 bg-white/50 backdrop-blur-sm text-[10px] font-bold tracking-[0.3em] hover:bg-gray-50 transition-all text-gray-600 text-center" href="#services">
@@ -84,7 +83,7 @@ const latestProducts: Product[] = productsResponse.contents;
 			</div>
 
 			<div class="corporate-grid">
-				<div class="service-card group">
+				<a class="service-card group" href="/services#ai">
 					<div class="mb-12 text-primary">
 						<span class="material-symbols-outlined text-4xl font-extralight">psychology</span>
 					</div>
@@ -93,13 +92,13 @@ const latestProducts: Product[] = productsResponse.contents;
 						<p class="text-sm text-gray-500 leading-loose">Generative AIや機械学習を活用し、業務フローを抜本的に革新するカスタムアプリケーションを開発します。</p>
 					</div>
 					<div class="mt-12 pt-8 border-t border-gray-50">
-						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#ai">
+						<span class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all">
 							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="service-card group">
+				<a class="service-card group" href="/services#consulting">
 					<div class="mb-12 text-primary">
 						<span class="material-symbols-outlined text-4xl font-extralight">insights</span>
 					</div>
@@ -110,13 +109,13 @@ const latestProducts: Product[] = productsResponse.contents;
 						<p class="text-sm text-gray-500 leading-loose">徹底したヒアリングとデータ分析により、ボトルネックを特定。デジタルによる効率化プロセスを設計します。</p>
 					</div>
 					<div class="mt-12 pt-8 border-t border-gray-50">
-						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#consulting">
+						<span class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all">
 							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="service-card group">
+				<a class="service-card group" href="/services#system">
 					<div class="mb-12 text-primary">
 						<span class="material-symbols-outlined text-4xl font-extralight">developer_mode</span>
 					</div>
@@ -125,13 +124,13 @@ const latestProducts: Product[] = productsResponse.contents;
 						<p class="text-sm text-gray-500 leading-loose">堅牢なアーキテクチャに基づいた基幹システムから、柔軟なWebアプリまで。品質と拡張性を両立した開発を行います。</p>
 					</div>
 					<div class="mt-12 pt-8 border-t border-gray-50">
-						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#system">
+						<span class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all">
 							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="service-card group">
+				<a class="service-card group" href="/services#it-strategy">
 					<div class="mb-12 text-primary">
 						<span class="material-symbols-outlined text-4xl font-extralight">partner_exchange</span>
 					</div>
@@ -140,13 +139,13 @@ const latestProducts: Product[] = productsResponse.contents;
 						<p class="text-sm text-gray-500 leading-loose">中長期的なIT戦略の策定から、DX推進、セキュリティ強化まで、技術経営のパートナーとして伴走します。</p>
 					</div>
 					<div class="mt-12 pt-8 border-t border-gray-50">
-						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#it-strategy">
+						<span class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all">
 							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="service-card group">
+				<a class="service-card group" href="/services#web">
 					<div class="mb-12 text-primary">
 						<span class="material-symbols-outlined text-4xl font-extralight">web</span>
 					</div>
@@ -155,21 +154,21 @@ const latestProducts: Product[] = productsResponse.contents;
 						<p class="text-sm text-gray-500 leading-loose">ブランド価値を最大化するクリエイティブと、成果に繋がるUI/UX設計。最新のWeb標準を適用した制作を行います。</p>
 					</div>
 					<div class="mt-12 pt-8 border-t border-gray-50">
-						<a class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all" href="/services#web">
+						<span class="text-[10px] font-bold text-primary tracking-widest flex items-center gap-3 group-hover:gap-5 transition-all">
 							VIEW MORE <span class="material-symbols-outlined text-sm">east</span>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="bg-deep-blue p-12 flex flex-col justify-center text-white transition-all hover:bg-primary">
+				<a class="bg-deep-blue p-12 flex flex-col justify-center text-white transition-all hover:bg-primary" href="/#contact">
 					<h4 class="text-xl font-bold mb-6">その他、個別のご相談</h4>
 					<p class="text-sm opacity-70 leading-loose mb-8">
 						課題が明確でない段階でも構いません。まずは現状をお聞かせください。
 					</p>
-					<a class="text-[10px] font-bold tracking-[0.2em] flex items-center gap-3 hover:gap-5 transition-all" href="/#contact">
+					<span class="text-[10px] font-bold tracking-[0.2em] flex items-center gap-3 hover:gap-5 transition-all">
 						CONTACT US <span class="material-symbols-outlined text-sm">east</span>
-					</a>
-				</div>
+					</span>
+				</a>
 			</div>
 		</div>
 	</section>
