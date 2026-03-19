@@ -38,6 +38,7 @@ export type Product = {
     id: string;
     name: string;
   } | null;
+  "company-name"?: string;
   publishedAt: string;
 };
 

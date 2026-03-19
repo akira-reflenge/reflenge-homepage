@@ -160,7 +160,7 @@ const latestProducts: Product[] = productsResponse.contents;
 					</div>
 				</a>
 
-				<a class="bg-deep-blue p-12 flex flex-col justify-center text-white transition-all hover:bg-primary" href="/#contact">
+				<a class="bg-deep-blue p-12 flex flex-col justify-center text-white transition-all hover:bg-primary reveal reveal-delay-6" href="/#contact">
 					<h4 class="text-xl font-bold mb-6">その他、個別のご相談</h4>
 					<p class="text-sm opacity-70 leading-loose mb-8">
 						課題が明確でない段階でも構いません。まずは現状をお聞かせください。
@@ -205,6 +205,9 @@ const latestProducts: Product[] = productsResponse.contents;
 					<h4 class="text-base font-bold leading-relaxed group-hover:text-primary transition-colors line-clamp-2 text-deep-blue">
 					{item.title}
 					</h4>
+					{item["company-name"] && (
+						<p class="text-[11px] text-gray-400 font-medium mt-1">{item["company-name"]}</p>
+					)}
 				</div>
 				</a>
 			))}

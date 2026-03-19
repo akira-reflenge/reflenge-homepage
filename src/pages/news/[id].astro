@@ -4,7 +4,7 @@ import { client } from '../../library/microcms';
 import type { News } from '../../library/microcms';
 
 export async function getStaticPaths() {
-  const response = await client.get({ endpoint: "news" });
+  const response = await client.get({ endpoint: "news", queries: { limit: 100 } });
   return response.contents.map((item: News) => ({
     params: { id: item.id },
   }));
@@ -45,7 +45,7 @@ const item = await client.getListDetail<News>({
           <img 
             src={item.eyecatch.url} 
             alt="" 
-            class="w-full aspect-video object-cover rounded-2xl shadow-sm" 
+            class="w-full rounded-2xl shadow-sm"
           />
         )}
       </header>
