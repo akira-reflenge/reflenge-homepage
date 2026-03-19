@@ -3,14 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import { client } from '../../library/microcms';
 import type { News } from '../../library/microcms';
 
-export async function getStaticPaths() {
-  const response = await client.get({ endpoint: "news", queries: { limit: 100 } });
-  return response.contents.map((item: News) => ({
-    params: { id: item.id },
-  }));
-}
-
 const { id } = Astro.params;
+if (!id) return Astro.redirect('/404');
 const item = await client.getListDetail<News>({
   endpoint: "news",
   contentId: id,
